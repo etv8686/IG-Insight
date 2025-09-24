@@ -289,31 +289,32 @@ export default function ComparePage() {
         <div className="text-center mb-12">
           <div className="flex flex-col items-center mb-6">
             {/* Logo */}
-            <div className="w-20 h-20 mb-4 bg-white rounded-2xl p-3 shadow-lg">
-              <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Background square with rounded corners */}
-                <rect x="10" y="10" width="80" height="80" rx="12" fill="#1e40af"/>
-                
-                {/* Bar chart */}
-                <rect x="20" y="60" width="8" height="20" fill="#1e40af"/>
-                <rect x="32" y="50" width="8" height="30" fill="#1e40af"/>
-                <rect x="44" y="40" width="8" height="40" fill="#1e40af"/>
-                <rect x="56" y="35" width="8" height="45" fill="#1e40af"/>
-                <rect x="68" y="45" width="8" height="35" fill="#1e40af"/>
-                
-                {/* Magnifying glass */}
-                <circle cx="65" cy="50" r="12" stroke="#1e40af" strokeWidth="3" fill="none"/>
-                <line x1="75" y1="60" x2="85" y2="70" stroke="#1e40af" strokeWidth="3" strokeLinecap="round"/>
-                
-                {/* Small circle in top-left */}
-                <circle cx="25" cy="25" r="4" fill="#1e40af"/>
-              </svg>
+            <div className="flex flex-col items-center mb-6">
+              <div className="w-24 h-24 mb-4 bg-white rounded-2xl p-4 shadow-lg">
+                <svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Background square with rounded corners */}
+                  <rect x="10" y="10" width="80" height="80" rx="12" fill="#1e40af"/>
+                  
+                  {/* Bar chart - 4 bars as shown in your design */}
+                  <rect x="20" y="65" width="10" height="15" fill="white"/>
+                  <rect x="35" y="55" width="10" height="25" fill="white"/>
+                  <rect x="50" y="45" width="10" height="35" fill="white"/>
+                  <rect x="65" y="40" width="10" height="40" fill="white"/>
+                  
+                  {/* Magnifying glass */}
+                  <circle cx="70" cy="50" r="8" stroke="white" strokeWidth="2" fill="none"/>
+                  <line x1="76" y1="56" x2="82" y2="62" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  
+                  {/* Small circle in top-left */}
+                  <circle cx="25" cy="25" r="3" fill="white"/>
+                </svg>
+              </div>
+              
+              {/* App name */}
+              <h1 className="text-4xl font-bold text-white mb-2">
+                IG Insight
+              </h1>
             </div>
-            
-            {/* App name */}
-            <h1 className="text-4xl font-bold text-white mb-2">
-              IG Insights
-            </h1>
           </div>
           
           <p className="text-xl text-slate-300 mb-8">
