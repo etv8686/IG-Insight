@@ -5,17 +5,23 @@ export function extractUsernames(json: unknown): string[] {
   const push = (u?: string) => {
     if (u && typeof u === "string") out.push(u.trim().toLowerCase());
   };
-  const walk = (x: any) => {
+  const walk = (x: unknown) => {
     if (!x) return;
     if (Array.isArray(x)) return x.forEach(walk);
-    if (typeof x === "object") {
-      if (Array.isArray((x as any).string_list_data)) {
-        (x as any).string_list_data.forEach((d: any) => push(d?.value));
+    if (typeof x === "object" && x !== null) {
+      const obj = x as Record<string, unknown>;
+      if (Array.isArray(obj.string_list_data)) {
+        obj.string_list_data.forEach((d: unknown) => {
+          if (typeof d === "object" && d !== null) {
+            const item = d as Record<string, unknown>;
+            push(item.value as string);
+          }
+        });
       }
-      if ((x as any).relationships_following) {
-        walk((x as any).relationships_following);
+      if (obj.relationships_following) {
+        walk(obj.relationships_following);
       }
-      Object.values(x).forEach(walk);
+      Object.values(obj).forEach(walk);
     }
   };
   walk(json);
