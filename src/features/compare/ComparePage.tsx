@@ -1,5 +1,4 @@
-import { useState, useRef, useMemo, useEffect } from "react";
-import { useVirtual } from "react-virtual";
+import { useState, useMemo, useEffect } from "react";
 import Dropzone from "./Dropzone";
 import { extractUsernames } from "../../lib/parse/extractUsernames";
 import { diff, inter } from "../../lib/diff/setOps";
@@ -89,7 +88,7 @@ export default function ComparePage() {
     }
   }, [appState, followers, following, unfollowers, notFollowingBack, mutual, stats]);
 
-  async function readJson(file?: File): Promise<{ data: any; error: AppError | null }> {
+  async function readJson(file?: File): Promise<{ data: unknown; error: AppError | null }> {
     if (!file) {
       return { data: null, error: { type: 'file_invalid', message: 'No file selected' } };
     }
@@ -232,19 +231,11 @@ export default function ComparePage() {
   function List({ list, title }: { list: string[]; title: string }) {
     const [q, setQ] = useState("");
     const debouncedQuery = useDebounce(q, 300);
-    const parentRef = useRef<HTMLDivElement>(null);
     
     const filtered = useMemo(() => {
       const s = debouncedQuery.trim().toLowerCase();
       return s ? list.filter(u => u.includes(s)) : list;
     }, [list, debouncedQuery]);
-
-    const virtualizer = useVirtual({
-      size: filtered.length,
-      parentRef,
-      estimateSize: () => 32,
-      overscan: 5,
-    });
 
     return (
       <div className="p-6 space-y-4">
@@ -263,44 +254,25 @@ export default function ComparePage() {
           onChange={(e) => setQ(e.target.value)}
         />
         
-        <div 
-          ref={parentRef}
-          className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-soft"
-          style={{ height: '50vh' }}
-        >
+        <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-soft max-h-96 overflow-y-auto">
           {filtered.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full text-slate-500 dark:text-slate-400">
+            <div className="flex flex-col items-center justify-center h-32 text-slate-500 dark:text-slate-400">
               <div className="text-4xl mb-2">🔍</div>
               <p className="text-sm">
                 {q ? 'No results found' : 'No items'}
               </p>
             </div>
           ) : (
-            <div
-              style={{
-                height: `${virtualizer.totalSize}px`,
-                width: '100%',
-                position: 'relative',
-              }}
-            >
-              {virtualizer.virtualItems.map((virtualItem: any) => (
+            <div>
+              {filtered.map((username, index) => (
                 <div
-                  key={virtualItem.index}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: `${virtualItem.size}px`,
-                    transform: `translateY(${virtualItem.start}px)`,
-                  }}
+                  key={index}
+                  className="py-3 px-4 text-sm hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800 last:border-b-0"
                 >
-                  <div className="py-3 px-4 text-sm hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border-b border-slate-100 dark:border-slate-800 last:border-b-0">
-                    <span className="text-slate-600 dark:text-slate-400">@</span>
-                    <span className="font-medium text-slate-800 dark:text-slate-200">
-                      {filtered[virtualItem.index]}
-                    </span>
-                  </div>
+                  <span className="text-slate-600 dark:text-slate-400">@</span>
+                  <span className="font-medium text-slate-800 dark:text-slate-200">
+                    {username}
+                  </span>
                 </div>
               ))}
             </div>
