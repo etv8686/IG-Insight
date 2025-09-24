@@ -1,0 +1,21 @@
+{
+  "relationships_following": [
+    {
+      "string_list_data": [
+        {"value": "alice"},
+        {"value": "bob"},
+        {"value": "peter"},
+        {"value": "quinn"},
+        {"value": "rachel"},
+        {"value": "steve"},
+        {"value": "tina"},
+        {"value": "uma"},
+        {"value": "victor"},
+        {"value": "wendy"},
+        {"value": "xavier"},
+        {"value": "yara"},
+        {"value": "zoe"}
+      ]
+    }
+  ]
+}

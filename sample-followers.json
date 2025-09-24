@@ -1,0 +1,23 @@
+{
+  "relationships_followers": [
+    {
+      "string_list_data": [
+        {"value": "alice"},
+        {"value": "bob"},
+        {"value": "charlie"},
+        {"value": "diana"},
+        {"value": "eve"},
+        {"value": "frank"},
+        {"value": "grace"},
+        {"value": "henry"},
+        {"value": "iris"},
+        {"value": "jack"},
+        {"value": "kate"},
+        {"value": "luke"},
+        {"value": "mary"},
+        {"value": "nick"},
+        {"value": "olivia"}
+      ]
+    }
+  ]
+}
