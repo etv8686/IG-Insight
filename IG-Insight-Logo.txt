@@ -1,0 +1,17 @@
+IG Insight Logo
+===============
+
+Design Elements:
+- Dark blue rounded square background (#1e40af)
+- 4 white vertical bars of increasing height
+- White magnifying glass overlaying the taller bars
+- Small white circle in top-left corner
+- "IG Insight" text below in dark blue
+
+Files Created:
+- ig-insight-logo.svg (SVG version)
+- ig-insight-logo.html (HTML version for screenshots)
+- public/logo.svg (App favicon)
+- src/features/compare/ComparePage.tsx (App logo)
+
+The logo has been successfully integrated into your IG Insight app and is now live on GitHub Pages!
